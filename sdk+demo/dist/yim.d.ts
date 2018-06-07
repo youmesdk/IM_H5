@@ -13,7 +13,7 @@ declare module yim {
      * @param appKey 用户游戏产品区别于其它游戏产品的标识，可以在游密官网获取
      * @param eventCallback 相关事件回调接口对象，如：{onLogin:_loginCallback, onLogout:_logoutCallback}
      */
-    export function getInstance(dirtyWordsArray: string[], appKey: string, eventCallback: IEventObject):void;
+    export function getInstance(dirtyWordsArray: string[], appKey: string, eventCallback: IEventObject): void;
     export interface IEventObject {
         /**
          * 登录回调
@@ -42,7 +42,7 @@ declare module yim {
         /**
          * 收到其他用户消息回调，其中chattype为聊天类型，1为私聊，2为群聊，另外，如果是语音消息，那么content是一个json，里面的key为downloadurl、datasize、voicetime、recordmode
          */
-        onRecvMessage?: (message: { msgType: MessageBodyType, senderid: string, recvid: string, messageid: string, createtime: number, chattype: number, content: string,final:boolean,history:boolean }) => void,
+        onRecvMessage?: (message: { msgType: MessageBodyType, senderid: string, recvid: string, messageid: string, createtime: number, chattype: number, content: string, final: boolean, history: boolean }) => void,
         /**
          * 被踢出回调
          */
@@ -58,68 +58,80 @@ declare module yim {
          * @param uname 用户名，调用者分配，不可为空字符串，只可由字母或数字或下划线组成
          * @param utoken 从服务端获取到的token
          */
-        public login(uname: string, utoken: string):void;
+        public login(uname: string, utoken: string): void;
         /**
          * 登出，操作结果会通过回调接口返回:onLogout
          */
-        public logout():void;
+        public logout(): void;
         /**
          * 加入聊天室进行群组聊天，操作结果会通过回调接口返回:onJoinChatRoom
          * @param roomID 频道编号
          */
-        public joinRoom(roomID: string):void;
-        
-        public initAudioMedia( options:
-        {
-        //是否显示上传/下载语音提示
-        showProgressTips: number,
-        //最大语音1分钟
-        maxRecordSecond: number,
-        //webrtc录音
-        bitRate: number,
-        mp3Worker: string,
-        lamejs: string
-    }, callback:(ret:{type:int,support:int})):void;
+        public joinRoom(roomID: string): void;
+
+        /**
+         * 初始化音频设备，
+         * @param options 
+         * @param callback 
+         */
+        public initAudioMedia(options:
+            {
+                //是否显示上传/下载语音提示
+                showProgressTips: number,
+                //最大语音1分钟
+                maxRecordSecond: number,
+                //webrtc录音
+                bitRate: number,
+                mp3Worker: string,
+                lamejs: string
+            }, callback: (ret: {
+                type: string, //'webrtc' or 'weixin'
+                support: boolean//0表示不支持录音，1表示支持
+            }) => void): void;
+        /**
+         * 检查当前环境是否支持录音，建议调用startAudioMessage 前先检查
+         */
+        public getSupportAudioMessage():boolean;
         /**
          * 退出聊天室，操作结果会通过回调接口返回:onLeaveChatRoom
          * @param roomID 频道编号
          */
-        public leaveRoom(roomID: string):void;
+        public leaveRoom(roomID: string): void;
         /**
          * 发送文本消息
          * @param recvUid 接受者编号（用户编号或者频道编号）
          * @param chatType 聊天类型，群聊或者私聊，1为私聊，2为群聊
          * @param content 聊天内容，可以用json格式来扩展消息内容
          */
-        public sendTextMessage(recvUid: string, chatType: number, content: string):void;
+        public sendTextMessage(recvUid: string, chatType: number, content: string): void;
         /**
-         * 开始录音
+         * 开始录音，调用前先通过 getSupportAudioMessage() 检查是否有录音权限。
          * @param recvUid 接受者编号（用户编号或者频道编号）
          * @param chatType 聊天类型，群聊或者私聊，1为私聊，2为群聊
          * @param errInfo 错误信息
          */
-        public startAudioMessage(recvUid: string, chatType: number, callBack: (code: YIMErrorcode, errInfo: { errCode: YIMErrorcode, errMsg: string }) => void):void;
+        public startAudioMessage(recvUid: string, chatType: number, callBack: (code: YIMErrorcode, errInfo: { errCode: YIMErrorcode, errMsg: string }) => void): void;
         /**
          * 取消录音
          */
-        public cancelAudioMessage():void;
+        public cancelAudioMessage(): void;
         /**
          * 停止录音并发送出去，当停止调用距开始调用不足一秒时会延迟1秒停止，操作结果会通过回调接口返回:onVoiceMsgSend
          * @param errInfo 错误信息
          */
-        public stopAudioMessage(callBack: (code: YIMErrorcode, errInfo: { errCode: YIMErrorcode, errMsg: string }) => void):void;
+        public stopAudioMessage(callBack: (code: YIMErrorcode, errInfo: { errCode: YIMErrorcode, errMsg: string }) => void): void;
         /**
          * 播放指定地址的语音
          * @param strVoiceID 语音地址
          * @param errInfo 错误信息
          */
-        public playAudioMessage(strVoiceID: string, callBack: (code: YIMErrorcode, errInfo: { errCode: YIMErrorcode, errMsg: string }) => void):void;
+        public playAudioMessage(strVoiceID: string, callBack: (code: YIMErrorcode, errInfo: { errCode: YIMErrorcode, errMsg: string }) => void): void;
         /**
          * 停止正在播放的语音信息
          * @param strVoiceID 语音地址
          * @param errInfo 错误信息
          */
-        public stopPlayAudioMessage(strVoiceID: string, callBack: (code: YIMErrorcode, errInfo: { errCode: YIMErrorcode, errMsg: string }) => void):void;
+        public stopPlayAudioMessage(strVoiceID: string, callBack: (code: YIMErrorcode, errInfo: { errCode: YIMErrorcode, errMsg: string }) => void): void;
         /**
          * 初始化语音自动播放队列
          * @param eventCallback 相关事件回调接口对象
@@ -127,14 +139,14 @@ declare module yim {
         public initAutoPlayVoiceQueue(eventCallback: {
             beginPlay: (message: { msgType: MessageBodyType, senderid: string, recvid: string, messageid: string, createtime: number, chattype: number, content: string }) => void,
             endPlay: (message: { msgType: MessageBodyType, senderid: string, recvid: string, messageid: string, createtime: number, chattype: number, content: string }) => void
-        }):void;
+        }): void;
         /**
          * 添加到自动播放列表
          * @param message 语音消息数据
          */
         public addToAutoPlayVoiceQueue(message: { msgType: MessageBodyType, senderid: string, recvid: string, messageid: string, createtime: number, chattype: number, content: string }): void;
-        
-        public getHistoryMessage(uname:string, minMsgId:string, MaxMsgId:string, day:number):void;
+
+        public getHistoryMessage(uname: string, minMsgId: string, MaxMsgId: string, day: number): void;
     }
     /**
      * 错误码定义
