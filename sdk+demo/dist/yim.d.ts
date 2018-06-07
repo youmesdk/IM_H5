@@ -1,4 +1,4 @@
-declare module "yim" {
+declare module yim {
     /**
      * 是否开启sdk调用日志
      */
@@ -68,6 +68,18 @@ declare module "yim" {
          * @param roomID 频道编号
          */
         public joinRoom(roomID: string):void;
+        
+        public initAudioMedia( options:
+        {
+        //是否显示上传/下载语音提示
+        showProgressTips: number,
+        //最大语音1分钟
+        maxRecordSecond: number,
+        //webrtc录音
+        bitRate: number,
+        mp3Worker: string,
+        lamejs: string
+    }, callback:(ret:{type:int,support:int})):void;
         /**
          * 退出聊天室，操作结果会通过回调接口返回:onLeaveChatRoom
          * @param roomID 频道编号
