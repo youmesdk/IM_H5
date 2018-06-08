@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "live-server-https": "0.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "live-server --https=./node_modules/live-server-https "
+  }
+}
