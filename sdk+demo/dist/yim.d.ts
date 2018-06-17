@@ -38,7 +38,7 @@ declare module yim {
         /**
          * 语音消息录制成功发送前接口回调
          */
-        onVoiceMsgSend?: (YIMErrorcodeOC: YIMErrorcode, audioInfo: { msgID: string, voiceSize: number, voiceTime: number, voiceURL: string }) => void,
+        onVoiceMsgSend?: (YIMErrorcodeOC: YIMErrorcode, audioInfo: { msgID: string, voiceSize: number, voiceTime: number, voiceURL: string,voiceServerID:string }) => void,
         /**
          * 收到其他用户消息回调，其中chattype为聊天类型，1为私聊，2为群聊，另外，如果是语音消息，那么content是一个json，里面的key为downloadurl、datasize、voicetime、recordmode
          */
@@ -144,7 +144,7 @@ declare module yim {
          * 添加到自动播放列表
          * @param message 语音消息数据
          */
-        public addToAutoPlayVoiceQueue(message: { msgType: MessageBodyType, senderid: string, recvid: string, messageid: string, createtime: number, chattype: number, content: string }): void;
+        public addToAutoPlayVoiceQueue(message: any): void;
 
         public getHistoryMessage(uname: string, minMsgId: string, MaxMsgId: string, day: number): void;
     }
