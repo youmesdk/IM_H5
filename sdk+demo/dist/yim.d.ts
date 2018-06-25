@@ -53,6 +53,7 @@ declare module yim {
      */
     export class YIM {
         private constructor();
+        public ready(callBack:()=>void):void;
         /**
          * 登录
          * @param uname 用户名，调用者分配，不可为空字符串，只可由字母或数字或下划线组成
