@@ -1,0 +1,32 @@
+{
+  "name": "h5-im-compatible",
+  "version": "1.0.0",
+  "description": "用于兼容旧版本 H5 IM SDK 的外壳，使老用户可以无缝升级",
+  "main": "yim.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://code.nxit.us:9889/web/h5-im-compatible.git"
+  },
+  "keywords": [
+    "youme",
+    "im"
+  ],
+  "author": "Benz <benz@youme.im>",
+  "license": "MIT",
+  "dependencies": {
+    "youme-im": "^2.0.8"
+  },
+  "devDependencies": {
+    "rollup": "^0.65.0",
+    "rollup-plugin-commonjs": "^9.1.6",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-re": "^1.0.7",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-typescript2": "^0.17.0",
+    "rollup-plugin-uglify": "^4.0.0",
+    "typescript": "^3.0.1"
+  }
+}
