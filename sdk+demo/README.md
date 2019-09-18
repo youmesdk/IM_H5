@@ -129,29 +129,29 @@ yim.on('message:receive:*', function (eventName, msg) {
 首先，安装本 SDK 的 npm 包：
 
 ```sh
-npm install youme-im --save
+npm install youme-h5-im --save
 ```
 
 然后，引入文件（这里使用 TypeScript 示范）：
 
 ```typescript
 // 对应 `yim.core.min.js`
-import YIM from 'youme-im/core';
+import YIM from 'youme-h5-im/core';
 
 // 对应 `yim.text.message.min.js`
-import TextMessage from 'youme-im/text';
+import TextMessage from 'youme-h5-im/text';
 
 // 对应 `yim.voice.message.min.js`
-import VoiceMessage from 'youme-im/voice';
+import VoiceMessage from 'youme-h5-im/voice';
 
 // 对应 `yim.amr.message.min.js`
-import AmrRecorder from 'youme-im/voice/amr';
+import AmrRecorder from 'youme-h5-im/voice/amr';
 
 // 对应 `yim.wechat.message.min.js`
-import WechatRecorder from 'youme-im/voice/wechat';
+import WechatRecorder from 'youme-h5-im/voice/wechat';
 
 // 引入一个 interface 用于 TypeScript 类型标识
-import { MessageObject } from 'youme-im/core';
+import { MessageObject } from 'youme-h5-im/core';
 
 // 初始化 YIM 实例，注册消息类型插件
 const yim = new YIM({
@@ -203,13 +203,13 @@ yim.on('message:receive:*', function (eventName: string, msg: MessageObject) {
 
  npm 包 | 对应 JS 文件
  ---- | ----
- `youme-im/core` | `yim.core.min.js`
- `youme-im/text` | `yim.text.message.min.js`
- `youme-im/voice` | `yim.voice.message.min.js`
- `youme-im/voice/wav` | `yim.wav.recorder.min.js`
- `youme-im/voice/mp3` | `yim.mp3.recorder.min.js`
- `youme-im/voice/amr` | `yim.amr.recorder.min.js`
- `youme-im/voice/wechat` | `yim.wechat.recorder.min.js`
+ `youme-h5-im/core` | `yim.core.min.js`
+ `youme-h5-im/text` | `yim.text.message.min.js`
+ `youme-h5-im/voice` | `yim.voice.message.min.js`
+ `youme-h5-im/voice/wav` | `yim.wav.recorder.min.js`
+ `youme-h5-im/voice/mp3` | `yim.mp3.recorder.min.js`
+ `youme-h5-im/voice/amr` | `yim.amr.recorder.min.js`
+ `youme-h5-im/voice/wechat` | `yim.wechat.recorder.min.js`
 
 ## 事件机制
 
