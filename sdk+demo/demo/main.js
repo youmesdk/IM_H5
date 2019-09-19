@@ -95,7 +95,7 @@ window.vc = new VConsole({
         function addTextItem(msgObj) {
             var html = msgObj.isFromMe ? rightTextTpl : leftTextTpl;
             html = html.replace(/{{name}}/g, msgObj.senderId)
-                .replace('{{text}}', msgObj.message.getText());
+                .replace('{{text}}', msgObj.message.getText() +'(' +msgObj.message.getAttachParam()+')');
             addDomToList(html);
         }
 
@@ -107,6 +107,7 @@ window.vc = new VConsole({
                 .replace(/{{id}}/g, msgObj.serverId)
                 .replace(/{{width}}/g, Math.round(msgObj.message.getDuration() * 10) + 30);
             addDomToList(html, msgObj.serverId);
+            console.log("voice message extra param:"+ msgObj.message.getExtra())
 
             // 绑定语音消息 Dom 的点击事件（播放）
             E('btn-voice-' + msgObj.serverId).onclick = function () {
@@ -139,6 +140,7 @@ window.vc = new VConsole({
                     break;
                 case 'voice':
                     addVoiceItem(msgObj);
+                    // msgObj.message.getExtra(); // 获取语音消息所携带的额外文本消息
                     break;
                 default:
                     addNotice('收到未知消息类型：' + msgObj.message.getType());
@@ -155,7 +157,7 @@ window.vc = new VConsole({
         });
 
         // 初始化录音插件
-        VoiceMessage.registerRecorder( [ WechatRecorder, MP3Recorder ] );
+        VoiceMessage.registerRecorder( [ WechatRecorder, MP3Recorder,AMRRecorder ] );
 
         // 初始化微信录音功能
         if (WechatRecorder.isWechat()) {
@@ -310,7 +312,7 @@ window.vc = new VConsole({
         // 发送文字消息
         var sendText = function () {
             var text = E('text-msg').value;
-            var msg = new TextMessage(text);
+            var msg = new TextMessage(text,"atta");
             yim.sendToRoom(curRoomId, msg).catch(function (e) {
                 addNotice(getErrorMsg(e.name));
             });
@@ -330,7 +332,11 @@ window.vc = new VConsole({
         // 按下录音键（按住说话）
         var holdDown = function (e) {
             isInCancelArea = false;
-            voice = new VoiceMessage();
+
+            var extraText = '这里是语音消息需要传输的额外消息';
+            voice = new VoiceMessage(extraText);
+            // 也可以 voice.setExtra(extraText);  同时存在voice.getExtra()来获取额外的文本信息;
+
             E('btn-hold-speak').className = 'active';
             voice.startRecord().then(function () {
                 E('btn-hold-speak').className = 'active speaking';

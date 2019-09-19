@@ -7,8 +7,8 @@
  * each engineer has a duty to keep the code elegant
  */
 
-import YIM from 'youme-im/core';
-import { AnyJson } from 'youme-im/core';
+import YIM from 'youme-h5-im/core';
+import { AnyJson } from 'youme-h5-im/core';
 
 /**
  * Recorder 基类，实现录音插件
@@ -155,6 +155,12 @@ declare class VoiceMessage extends YIM.Message {
      */
     public static Recorder: typeof Recorder;
 
+     /**
+     * 新建一个语音消息对象，可以传入需要额外传输的文本，也可以后续再用 setExtra 传入
+     * @param {string} [extra]
+     */
+    constructor(extra?: string) ;
+
     /**
      * 注册一个 Recorder
      * @param {Array<{new: Recorder}>} RecClass 数组，Recorder 类列表（直接传入，不要 new 和括号）
@@ -219,6 +225,20 @@ declare class VoiceMessage extends YIM.Message {
 
     protected typeId: number;
     protected typeName: string;
+
+    /**
+     * 设置语音消息需要额外携带的文本
+     * 
+     * @param {string} extra
+     */
+    public setExtra(extra: string): void;
+
+    /**
+     * 获取语音消息需要额外携带的文本
+     *
+     * @return {string}
+     */
+    public getExtra(): string;
 
     /**
      * 使用服务器返回的或者其他实例获得的 JSON 或字符串内容来初始化语音，初始化成功后应可直接播放

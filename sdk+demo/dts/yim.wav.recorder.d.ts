@@ -7,8 +7,8 @@
  * each engineer has a duty to keep the code elegant
  */
 
-import { AnyJson } from 'youme-im/core';
-import VoiceMessage from 'youme-im/voice';
+import { AnyJson } from 'youme-h5-im/core';
+import VoiceMessage from 'youme-h5-im/voice';
 
 export default class WAVRecorder extends VoiceMessage.Recorder {
     protected typeId: number;

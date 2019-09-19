@@ -6,7 +6,10 @@ VoiceMessage 语音消息类
 **类型**: 全局类(class)  
 
 * [VoiceMessage](#VoiceMessage)
+    * [new VoiceMessage([extra])](#new_VoiceMessage_new)
     * _instance_
+        * [.setExtra(extra)](#VoiceMessage+setExtra)
+        * [.getExtra()](#VoiceMessage+getExtra) ⇒ <code>string</code>
         * [.getErrorName()](#VoiceMessage+getErrorName) ⇒ <code>string</code>
         * _录音控制_
             * [.initRecord()](#VoiceMessage+initRecord) ⇒ <code>Promise.&lt;void&gt;</code>
@@ -55,6 +58,33 @@ VoiceMessage 语音消息类
             * [.bindAutoPlayEvent(event, cb)](#VoiceMessage.bindAutoPlayEvent)
             * [.unbindAutoPlayEvent(event, [cb])](#VoiceMessage.unbindAutoPlayEvent)
 
+<a name="new_VoiceMessage_new"></a>
+
+### new VoiceMessage([extra])
+新建一个语音消息对象，可以传入需要额外传输的文本，也可以后续再用 setExtra 传入
+
+
+| 参数 | 类型 |
+| --- | --- |
+| [extra] | <code>string</code> | 
+
+<a name="VoiceMessage+setExtra"></a>
+
+### voice.setExtra(extra)
+设置语音消息需要额外携带的文本
+
+**类型**: 实例方法(function)，来自 [<code>VoiceMessage</code>](#VoiceMessage)  
+
+| 参数 | 类型 |
+| --- | --- |
+| extra | <code>string</code> | 
+
+<a name="VoiceMessage+getExtra"></a>
+
+### voice.getExtra() ⇒ <code>string</code>
+获取语音消息需要额外携带的文本
+
+**类型**: 实例方法(function)，来自 [<code>VoiceMessage</code>](#VoiceMessage)  
 <a name="VoiceMessage+getErrorName"></a>
 
 ### voice.getErrorName() ⇒ <code>string</code>

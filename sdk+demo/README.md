@@ -170,14 +170,14 @@ VoiceMessage.registerRecorder([AmrRecorder, WechatRecorder]);
 
 // 发送文本消息示例
 function sendText(text: string) {
-    const msg = new TextMessage(text);
+    const msg = new TextMessage(text, 'extra param');
     yim.sendToRoom('xxxxx', msg);
 }
 
 // 发送语音消息示例
 let voice: VoiceMessage;
 function startRecord() {
-    voice = new VoiceMessage();  // 新建实例
+    voice = new VoiceMessage('extra param');  // 新建实例
     voice.startRecord();         // 开始录音
 }
 function finishRecord() {
@@ -191,9 +191,10 @@ yim.on('message:receive:*', function (eventName: string, msg: MessageObject) {
     const msgObj = msg.message;
     // 根据消息类型做出相应操作
     if (msgObj instanceof TextMessage) {
-        alert('收到文本消息: ' + msgObj.getText());
+        alert('收到文本消息: ' + msgObj.getText() + msgObj.message.getAttachParam());
     }
     if (msgObj instanceof VoiceMessage) {
+        alert('附加参数是：'+ msgObj.message.getExtra())
         msgObj.play();
     }
 });
@@ -320,6 +321,20 @@ VoiceMessage.registerRecorder([AmrRecorder, WechatRecorder]);
  - [核心类 (core)](./doc/core.api.md)
  - [文本消息类 (text)](./doc/text.api.md)
  - [语音消息类 (voice)](./doc/voice.api.md)
+
+## 常见问题
+
+**Q. 使用本SDK，两个人聊天是否一定要加入房间？我们只需要点对点的单独聊天。**
+
+**A.** 可以不用加入房间，聊天双方都登录之后，使用 `yim.sendToUser()` 指定对方的 userId 即可发送消息。
+
+**Q. 我使用的浏览器版本是在兼容性列表之内的，但是初始化录音时候却报错 `DeviceNotSupportedError`？**
+
+**A.** 对于多数浏览器，为了安全起见，使用语音时都要求使用 `https` 协议，若页面不在 `https` 下则会报 `DeviceNotSupportedError` 错误。而为了开发方便，某些浏览器（例如 Chrome）也支持在 `localhost` 下使用 `http`。
+
+**Q. 使用微信语音功能时，当出现 `RecordTooShortError`（录音时间过短）之后，接下来的录音请求都报 `RecorderBusyError` 错误了，怎么办？**
+
+**A.** 微信官方不允许太频繁地调用录音接口，因此录音结束之后（包括录音时间过短之后），须等待大约1秒之后，才能发起新的录音请求。
 
 ## 技术支持
 

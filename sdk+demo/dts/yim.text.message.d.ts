@@ -7,13 +7,13 @@
  * each engineer has a duty to keep the code elegant
  */
 
-import YIM from 'youme-im/core';
+import YIM from 'youme-h5-im/core';
 export default class TextMessage extends YIM.Message {
     /**
      * 可直接新建一个文本消息对象
      * @param {string} text
      */
-    constructor(text?: string);
+    constructor(text?: string,  attachParam?:string);
 
     /**
      * 设置文本
@@ -27,9 +27,21 @@ export default class TextMessage extends YIM.Message {
      */
     public getText(): string;
 
+    /**
+     * 传入需要传输的附加参数
+     * @param {string} param
+     */
+    public setAttachParam(param: string): void;
+
+    /**
+     * 获取附加参数
+     * @return {string}
+     */
+    public getAttachParam(): string;
+
     protected typeId: number;
     protected typeName: string;
-    public initWithContent(content: string): Promise<void>;
+    public initWithContent(content: string, extra?: string): Promise<void>;
 
     /**
      * 按事先设置的脏字数组

@@ -10,6 +10,8 @@ TextMessage 文本消息类
     * _instance_
         * [.setText(text)](#TextMessage+setText)
         * [.getText()](#TextMessage+getText) ⇒ <code>string</code>
+        * [.setAttachParam(param)](#TextMessage+setAttachParam)
+        * [.getAttachParam()](#TextMessage+getAttachParam) ⇒ <code>string</code>
     * _static_
         * [.filterDirty(text, [replace])](#TextMessage.filterDirty)
         * [.setDirtyWords(wordsArray)](#TextMessage.setDirtyWords)
@@ -39,6 +41,23 @@ TextMessage 文本消息类
 
 ### text.getText() ⇒ <code>string</code>
 获取文本
+
+**类型**: 实例方法(function)，来自 [<code>TextMessage</code>](#TextMessage)  
+<a name="TextMessage+setAttachParam"></a>
+
+### text.setAttachParam(param)
+传入需要传输的附加参数
+
+**类型**: 实例方法(function)，来自 [<code>TextMessage</code>](#TextMessage)  
+
+| 参数 | 类型 |
+| --- | --- |
+| param | <code>string</code> | 
+
+<a name="TextMessage+getAttachParam"></a>
+
+### text.getAttachParam() ⇒ <code>string</code>
+获取附加参数
 
 **类型**: 实例方法(function)，来自 [<code>TextMessage</code>](#TextMessage)  
 <a name="TextMessage.filterDirty"></a>
