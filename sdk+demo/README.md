@@ -32,7 +32,6 @@
  - **Firefox for Windows/MacOS/Linux/Android:** 42+
  - **Safari for Windows/MacOS/Linux:** 11.1+
  - **微信:** 6.5.3+ WebView （暂时不支持小程序、小游戏）
- - **手机QQ:** 暂时只在 Android 版本支持
 
 ## 接入指南
 
