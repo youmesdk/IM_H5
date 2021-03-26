@@ -152,7 +152,7 @@ window.vc = new VConsole({
 
         // 初始化游密 IM SDK
         var yim = new YIM({
-            appKey: 'YOUMEBC2B3171A7A165DC10918A7B50A4B939F2A187D0',
+            appKey: 'YOUME29B842317F4729B1906FBD79BB0A2DB5A0A73576',
             useMessageType: [ TextMessage, VoiceMessage ]
         });
 
@@ -313,7 +313,7 @@ window.vc = new VConsole({
         var sendText = function () {
             var text = E('text-msg').value;
             var msg = new TextMessage(text,"atta");
-            yim.sendToRoom(curRoomId, msg).catch(function (e) {
+            yim.sendToRoom('benz', msg).catch(function (e) {
                 addNotice(getErrorMsg(e.name));
             });
             E('text-msg').value = '';
