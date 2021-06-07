@@ -67,10 +67,10 @@ window.vc = new VConsole({
             // 超过 300 条，删除第一条
             if (chatDom.childNodes.length > 300) {
                 var first = chatDom.firstChild;
-                var dataId = first.getAttribute('data-id');
-                if (dataId && msgHash.hasOwnProperty(dataId)) {
-                    delete msgHash[dataId];
-                }
+                // var dataId = first.getAttribute('data-id');
+                // if (dataId && msgHash.hasOwnProperty(dataId)) {
+                //     delete msgHash[dataId];
+                // }
                 chatDom.removeChild(first);
             }
 
@@ -128,8 +128,8 @@ window.vc = new VConsole({
                 b.className = b.className.replace(/\s*voice-playing/g, '');
             });
 
-            // 把 msgObj 存起来
-            msgHash[msgObj.serverId] = msgObj;
+            // 把 msgObj 存起来(不存，没啥用)
+            // msgHash[msgObj.serverId] = msgObj;
         }
 
         // 添加消息（判断消息类型并选择 addTextItem 或 addVoiceItem）
@@ -137,6 +137,7 @@ window.vc = new VConsole({
             switch (msgObj.message.getType()) {
                 case 'text':
                     addTextItem(msgObj);
+                    console.log(msgObj)
                     break;
                 case 'voice':
                     addVoiceItem(msgObj);
@@ -313,7 +314,7 @@ window.vc = new VConsole({
         var sendText = function () {
             var text = E('text-msg').value;
             var msg = new TextMessage(text,"atta");
-            yim.sendToRoom('benz', msg).catch(function (e) {
+            yim.sendToRoom(curRoomId, msg).catch(function (e) {
                 addNotice(getErrorMsg(e.name));
             });
             E('text-msg').value = '';
