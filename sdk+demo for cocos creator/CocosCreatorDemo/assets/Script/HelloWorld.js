@@ -14,10 +14,15 @@ cc.Class({
     onLoad: function () {
         this.label.string = this.text;
         // 初始化游密 IM SDK
+        
         var yim = new YIM({
             appKey: 'YOUME5BE427937AF216E88E0F84C0EF148BD29B691556', // 请将 appKey 进行替换
+            userId:'user1',
+            token:'123456',
             useMessageType: [ VoiceMessage ]
         });
+
+        
 
         // 初始化录音插件
         VoiceMessage.registerRecorder( [ WechatRecorder, MP3Recorder ] );

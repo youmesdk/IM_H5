@@ -7,9 +7,10 @@
  * each engineer has a duty to keep the code elegant
  */
 
-window.vc = new VConsole({
-    onReady: function () {
-        vc.hideSwitch();
+// window.vc = new VConsole({
+//     onReady:
+(function () {
+        // vc.hideSwitch();
         var ERROR_NAME = {
             // 通用
             NotLoginError: '请先登录',
@@ -95,7 +96,7 @@ window.vc = new VConsole({
         function addTextItem(msgObj) {
             var html = msgObj.isFromMe ? rightTextTpl : leftTextTpl;
             html = html.replace(/{{name}}/g, msgObj.senderId)
-                .replace('{{text}}', msgObj.message.getText() +'(' +msgObj.message.getAttachParam()+')');
+                .replace('{{text}}', msgObj.message.getText() + '(' + msgObj.message.getAttachParam() + ')');
             addDomToList(html);
         }
 
@@ -107,7 +108,7 @@ window.vc = new VConsole({
                 .replace(/{{id}}/g, msgObj.serverId)
                 .replace(/{{width}}/g, Math.round(msgObj.message.getDuration() * 10) + 30);
             addDomToList(html, msgObj.serverId);
-            console.log("voice message extra param:"+ msgObj.message.getExtra())
+            console.log("voice message extra param:" + msgObj.message.getExtra())
 
             // 绑定语音消息 Dom 的点击事件（播放）
             E('btn-voice-' + msgObj.serverId).onclick = function () {
@@ -152,19 +153,19 @@ window.vc = new VConsole({
 
         // 初始化游密 IM SDK
         var yim = new YIM({
-            appKey: 'YOUME29B842317F4729B1906FBD79BB0A2DB5A0A73576',
-            useMessageType: [ TextMessage, VoiceMessage ]
+            appKey: 'YOUME20859B1EE41178CCEA2B6528073C74F16CE6652C',
+            useMessageType: [TextMessage, VoiceMessage]
         });
 
         // 初始化录音插件
-        VoiceMessage.registerRecorder( [ WechatRecorder, MP3Recorder,AMRRecorder ] );
+        VoiceMessage.registerRecorder([WechatRecorder, MP3Recorder, AMRRecorder]);
 
         // 初始化微信录音功能
         if (WechatRecorder.isWechat()) {
             WechatRecorder.setWXObject(wx);
 
             // 自制简单的 jsonp 请求，以获取微信 JS-SDK 所需的数据
-            (function() {
+            (function () {
                 window._yimcallback = function (json) {
                     wx.config({
                         debug: false,
@@ -236,7 +237,7 @@ window.vc = new VConsole({
             }
 
             // 登录
-            yim.login(userId, token).catch(function(e) {
+            yim.login(userId, token).catch(function (e) {
                 alert('登录失败：' + getErrorMsg(e.name));
             });
 
@@ -312,7 +313,7 @@ window.vc = new VConsole({
         // 发送文字消息
         var sendText = function () {
             var text = E('text-msg').value;
-            var msg = new TextMessage(text,"atta");
+            var msg = new TextMessage(text, "atta");
             yim.sendToRoom('benz', msg).catch(function (e) {
                 addNotice(getErrorMsg(e.name));
             });
@@ -358,14 +359,18 @@ window.vc = new VConsole({
         // 手指（或鼠标）在界面上移动
         var isInCancelArea = false;
         var inCancel = function () {
-            if (isInCancelArea) { return; }
+            if (isInCancelArea) {
+                return;
+            }
             isInCancelArea = true;
             E('speak-display-recording').style.display = 'none';
             E('speak-display-leave-to-cancel').style.display = 'block';
             E('btn-hold-speak-text').innerHTML = '松开 取消';
         };
         var inFinish = function () {
-            if (!isInCancelArea) { return; }
+            if (!isInCancelArea) {
+                return;
+            }
             isInCancelArea = false;
             E('speak-display-recording').style.display = 'block';
             E('speak-display-leave-to-cancel').style.display = 'none';
@@ -378,8 +383,14 @@ window.vc = new VConsole({
                 inFinish();
             }
         };
-        E('btn-hold-speak').addEventListener('touchmove', function (e) { inWhere(e.touches[0].pageY); e.preventDefault();});
-        E('btn-hold-speak').addEventListener('mousemove', function (e) { inWhere(e.pageY); e.preventDefault();});
+        E('btn-hold-speak').addEventListener('touchmove', function (e) {
+            inWhere(e.touches[0].pageY);
+            e.preventDefault();
+        });
+        E('btn-hold-speak').addEventListener('mousemove', function (e) {
+            inWhere(e.pageY);
+            e.preventDefault();
+        });
 
         // 在取消区域松手
         var holdUpCancel = function () {
@@ -418,7 +429,7 @@ window.vc = new VConsole({
         E('btn-hold-speak').addEventListener('mouseup', holdUpWhere);
 
         // 事件绑定：已登录
-        yim.on('account.login', function ()  {
+        yim.on('account.login', function () {
             E('user-logged').style.display = 'block';
             E('user-no-log').style.display = 'none';
             E('login-form').style.display = 'none';
@@ -427,7 +438,7 @@ window.vc = new VConsole({
         });
 
         // 事件绑定：正在登录中
-        yim.on('account.logging', function ()  {
+        yim.on('account.logging', function () {
             E('user-logged').style.display = 'none';
             E('user-no-log').style.display = 'none';
             E('btn-login').setAttribute('disabled', true);
@@ -435,7 +446,7 @@ window.vc = new VConsole({
         });
 
         // 事件绑定：退出登录
-        yim.on('account.logout', function ()  {
+        yim.on('account.logout', function () {
             E('user-logged').style.display = 'none';
             E('user-no-log').style.display = 'block';
             E('login-form').style.display = 'flex';
@@ -445,7 +456,7 @@ window.vc = new VConsole({
         });
 
         // 事件绑定：登录失败
-        yim.on('account.error:*', function (eventName, e)  {
+        yim.on('account.error:*', function (eventName, e) {
             E('user-logged').style.display = 'none';
             E('user-no-log').style.display = 'block';
             E('login-form').style.display = 'flex';
@@ -455,7 +466,7 @@ window.vc = new VConsole({
         });
 
         // 事件绑定：被踢下线
-        yim.on('account.kickoff', function ()  {
+        yim.on('account.kickoff', function () {
             alert('你被踢下线了');
             addNotice('你被踢下线了');
             E('user-logged').style.display = 'none';
@@ -466,7 +477,7 @@ window.vc = new VConsole({
         });
 
         // 事件绑定：正在请求加入房间
-        yim.on('room.joining:*', function (eventName, roomId)  {
+        yim.on('room.joining:*', function (eventName, roomId) {
             E('room-joined').style.display = 'none';
             E('room-no-join').style.display = 'none';
             E('room-joining').style.display = 'block';
@@ -474,7 +485,7 @@ window.vc = new VConsole({
         });
 
         // 事件绑定：加入房间
-        yim.on('room.join:*', function (eventName, roomId)  {
+        yim.on('room.join:*', function (eventName, roomId) {
             E('room-joined').style.display = 'block';
             E('room-no-join').style.display = 'none';
             E('room-joining').style.display = 'none';
@@ -485,7 +496,7 @@ window.vc = new VConsole({
         });
 
         // 事件绑定：退出房间
-        yim.on('room.leave:*', function (eventName, roomId)  {
+        yim.on('room.leave:*', function (eventName, roomId) {
             E('room-joined').style.display = 'none';
             E('room-no-join').style.display = 'block';
             E('room-joining').style.display = 'none';
@@ -493,7 +504,7 @@ window.vc = new VConsole({
         });
 
         // 事件绑定：加入房间失败
-        yim.on('room.join-error:*', function (eventName, e, roomId)  {
+        yim.on('room.join-error:*', function (eventName, e, roomId) {
             E('room-joined').style.display = 'none';
             E('room-no-join').style.display = 'block';
             E('room-joining').style.display = 'none';
@@ -501,7 +512,7 @@ window.vc = new VConsole({
         });
 
         // 事件绑定：退出房间失败
-        yim.on('room.leave-error:*', function (eventName, e, roomId)  {
+        yim.on('room.leave-error:*', function (eventName, e, roomId) {
             E('room-joined').style.display = 'block';
             E('room-no-join').style.display = 'none';
             E('room-joining').style.display = 'none';
@@ -512,17 +523,19 @@ window.vc = new VConsole({
         });
 
         // 事件绑定：发送/接收了消息
-        yim.on('message:*', function (eventName, msgObj)  {
+        yim.on('message:*', function (eventName, msgObj) {
             addChatItem(msgObj);
         });
 
         // 打开 vConsole
         E('v-console-switch').onclick = function () {
-            window.vc.show();
+            if (window.vc) {
+                window.vc.show();
+            }
         };
 
         // 版本
         addNotice('Ver 8');
 
     }
-});
+)();

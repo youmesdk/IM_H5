@@ -1,0 +1,12 @@
+{
+  "name": "youme-h5-im",
+  "version": "2.5.4",
+  "description": "游密 H5 IM SDK",
+  "main": "core/index.js",
+  "keywords": [
+    "youme",
+    "im"
+  ],
+  "author": "Benz",
+  "license": "UNLICENSED"
+}
