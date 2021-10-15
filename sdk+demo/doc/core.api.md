@@ -26,7 +26,7 @@ YIM 类
 
 * [YIM](#YIM)
     * _instance_
-        * [.init(config)](#YIM+init) ⇒ <code>Promise.&lt;void&gt;</code>
+        * [.init(config)](#YIM+init) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
         * [.uninit()](#YIM+uninit)
         * [.isLogging()](#YIM+isLogging) ⇒ <code>boolean</code>
         * [.isLogged()](#YIM+isLogged) ⇒ <code>boolean</code>
@@ -34,10 +34,10 @@ YIM 类
             * ["event:signaling.status:[status]"](#YIM+event_signaling.status_[status])
             * ["event:this._signaling.ready"](#YIM+event_this._signaling.ready)
         * _房间控制_
-            * [.joinRoom(roomId)](#YIM+joinRoom) ⇒ <code>Promise.&lt;void&gt;</code>
-            * [.leaveRoom(roomId)](#YIM+leaveRoom) ⇒ <code>Promise.&lt;void&gt;</code>
+            * [.joinRoom(roomId)](#YIM+joinRoom) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
+            * [.leaveRoom(roomId)](#YIM+leaveRoom) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
             * [.inRoom(roomId)](#YIM+inRoom) ⇒ <code>boolean</code>
-            * [.getRoomIdList()](#YIM+getRoomIdList) ⇒ <code>Array.&lt;string&gt;</code>
+            * [.getRoomIdList()](#YIM+getRoomIdList) ⇒ <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code>
             * ["event:room.joining:[roomId]"](#YIM+event_room.joining_[roomId])
             * ["event:room.join:[roomId]"](#YIM+event_room.join_[roomId])
             * ["event:room.join-error:[errorName]"](#YIM+event_room.join-error_[errorName])
@@ -45,15 +45,15 @@ YIM 类
             * ["event:room.leave-error:[errorName]"](#YIM+event_room.leave-error_[errorName])
         * _消息控制_
             * [.registerMessageType(MsgClass)](#YIM+registerMessageType)
-            * [.sendToRoom(roomId, msg, silent)](#YIM+sendToRoom) ⇒ <code>Promise.&lt;void&gt;</code>
-            * [.sendToUser(userId, msg, silent)](#YIM+sendToUser) ⇒ <code>Promise.&lt;void&gt;</code>
-            * [.requestHistoryMessage(userOrRoomId, minMsgId, maxMsgId, day)](#YIM+requestHistoryMessage) ⇒ <code>Promise.&lt;Array.&lt;MessageObject&gt;&gt;</code>
+            * [.sendToRoom(roomId, msg, silent)](#YIM+sendToRoom) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
+            * [.sendToUser(userId, msg, silent)](#YIM+sendToUser) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
+            * [.requestHistoryMessage(userOrRoomId, minMsgId, maxMsgId, day)](#YIM+requestHistoryMessage) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;Array.&lt;MessageObject&gt;&gt;</code>
             * ["event:message:send:[user|group]:[userId|roomId]"](#YIM+event_message_send_[user|group]_[userId|roomId])
             * ["event:message:send-failed:MessageTooLongError:[user|group]:[userId|roomId]"](#YIM+event_message_send-failed_MessageTooLongError_[user|group]_[userId|roomId])
             * ["event:message:send-failed:NotLoginError:[user|group]:[userId|roomId]"](#YIM+event_message_send-failed_NotLoginError_[user|group]_[userId|roomId])
             * ["event:message:receive:[user|group]:[userId|roomId]"](#YIM+event_message_receive_[user|group]_[userId|roomId])
         * _用户帐户控制_
-            * [.login(userId, token, silent)](#YIM+login) ⇒ <code>Promise.&lt;void&gt;</code>
+            * [.login(userId, token, timestamp, silent)](#YIM+login) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
             * [.logout()](#YIM+logout)
             * [.getMyUserId()](#YIM+getMyUserId) ⇒ <code>string</code>
             * ["event:account.login"](#YIM+event_account.login)
@@ -71,11 +71,11 @@ YIM 类
 
 <a name="YIM+init"></a>
 
-### yim.init(config) ⇒ <code>Promise.&lt;void&gt;</code>
+### yim.init(config) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
 初始化
 
 **类型**: 实例方法(function)，来自 [<code>YIM</code>](#YIM)  
-**返回值**: <code>Promise.&lt;void&gt;</code> - 完成初始化
+**返回值**: <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code> - 完成初始化
   - 若设定了用户名和密码，则登录成功后回调
   - 若同时设定了用户名、密码、房间号，则加入房间后回调
   - 若没有用户名和密码，则无论是否设定房间号，都立即回调，不等待加入房间  
@@ -124,7 +124,7 @@ YIM 类
 **分类**: 信令服务器连接  
 <a name="YIM+joinRoom"></a>
 
-### yim.joinRoom(roomId) ⇒ <code>Promise.&lt;void&gt;</code>
+### yim.joinRoom(roomId) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
 加入房间
 
 **类型**: 实例方法(function)，来自 [<code>YIM</code>](#YIM)  
@@ -136,11 +136,11 @@ YIM 类
 
 <a name="YIM+leaveRoom"></a>
 
-### yim.leaveRoom(roomId) ⇒ <code>Promise.&lt;void&gt;</code>
+### yim.leaveRoom(roomId) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
 退出房间
 
 **类型**: 实例方法(function)，来自 [<code>YIM</code>](#YIM)  
-**返回值**: <code>Promise.&lt;void&gt;</code> - 完成退出  
+**返回值**: <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code> - 完成退出  
 **分类**: 房间控制  
 
 | 参数 | 类型 |
@@ -161,7 +161,7 @@ YIM 类
 
 <a name="YIM+getRoomIdList"></a>
 
-### yim.getRoomIdList() ⇒ <code>Array.&lt;string&gt;</code>
+### yim.getRoomIdList() ⇒ <code>[ &#x27;Array&#x27; ].&lt;string&gt;</code>
 已加入的房间列表
 
 **类型**: 实例方法(function)，来自 [<code>YIM</code>](#YIM)  
@@ -251,7 +251,7 @@ YIM.registerMessageType([ TextMessage, VoiceMessage ]);
 ```
 <a name="YIM+sendToRoom"></a>
 
-### yim.sendToRoom(roomId, msg, silent) ⇒ <code>Promise.&lt;void&gt;</code>
+### yim.sendToRoom(roomId, msg, silent) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
 群发消息到指定房间
 
 **类型**: 实例方法(function)，来自 [<code>YIM</code>](#YIM)  
@@ -265,7 +265,7 @@ YIM.registerMessageType([ TextMessage, VoiceMessage ]);
 
 <a name="YIM+sendToUser"></a>
 
-### yim.sendToUser(userId, msg, silent) ⇒ <code>Promise.&lt;void&gt;</code>
+### yim.sendToUser(userId, msg, silent) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
 私发消息给某人
 
 **类型**: 实例方法(function)，来自 [<code>YIM</code>](#YIM)  
@@ -279,7 +279,7 @@ YIM.registerMessageType([ TextMessage, VoiceMessage ]);
 
 <a name="YIM+requestHistoryMessage"></a>
 
-### yim.requestHistoryMessage(userOrRoomId, minMsgId, maxMsgId, day) ⇒ <code>Promise.&lt;Array.&lt;MessageObject&gt;&gt;</code>
+### yim.requestHistoryMessage(userOrRoomId, minMsgId, maxMsgId, day) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;Array.&lt;MessageObject&gt;&gt;</code>
 获取历史消息列表
 
 **类型**: 实例方法(function)，来自 [<code>YIM</code>](#YIM)  
@@ -346,7 +346,7 @@ YIM.registerMessageType([ TextMessage, VoiceMessage ]);
 
 <a name="YIM+login"></a>
 
-### yim.login(userId, token, silent) ⇒ <code>Promise.&lt;void&gt;</code>
+### yim.login(userId, token, timestamp, silent) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
 登录
 
 **类型**: 实例方法(function)，来自 [<code>YIM</code>](#YIM)  
@@ -356,6 +356,7 @@ YIM.registerMessageType([ TextMessage, VoiceMessage ]);
 | --- | --- | --- | --- |
 | userId | <code>string</code> |  |  |
 | token | <code>string</code> |  |  |
+| timestamp | <code>string</code> |  |  |
 | silent | <code>boolean</code> | <code>false</code> | 若 true，则登录失败时不抛出错误（关闭 catch） |
 
 <a name="YIM+logout"></a>
@@ -460,8 +461,9 @@ YIM.registerMessageType([ TextMessage, VoiceMessage ]);
 | appKey | <code>string</code> | appKey |
 | [userId] | <code>string</code> | 用户ID |
 | [token] | <code>string</code> | 用户token |
+| [timestamp] | <code>string</code> | token签名的时间戳,采用v3 token时需要同时传入token和timestamp，其他情况本参数传""空字符串即可 |
 | [roomId] | <code>string</code> | 房间号 |
-| [useMessageType] | <code>Array.&lt;{new: Message}&gt;</code> | 注册消息类型 |
+| [useMessageType] | <code>[ &#x27;Array&#x27; ].&lt;{new: Message}&gt;</code> | 注册消息类型 |
 
 <a name="MessageObject"></a>
 

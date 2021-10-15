@@ -6,7 +6,7 @@ TextMessage 文本消息类
 **类型**: 全局类(class)  
 
 * [TextMessage](#TextMessage)
-    * [new TextMessage([text])](#new_TextMessage_new)
+    * [new TextMessage([text], [attachParam])](#new_TextMessage_new)
     * _instance_
         * [.setText(text)](#TextMessage+setText)
         * [.getText()](#TextMessage+getText) ⇒ <code>string</code>
@@ -18,13 +18,14 @@ TextMessage 文本消息类
 
 <a name="new_TextMessage_new"></a>
 
-### new TextMessage([text])
+### new TextMessage([text], [attachParam])
 新建一个文本消息对象，可以传入需要传输的文本，也可以后续再用 setText 传入
 
 
 | 参数 | 类型 |
 | --- | --- |
 | [text] | <code>string</code> | 
+| [attachParam] | <code>string</code> | 
 
 <a name="TextMessage+setText"></a>
 

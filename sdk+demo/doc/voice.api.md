@@ -12,9 +12,9 @@ VoiceMessage 语音消息类
         * [.getExtra()](#VoiceMessage+getExtra) ⇒ <code>string</code>
         * [.getErrorName()](#VoiceMessage+getErrorName) ⇒ <code>string</code>
         * _录音控制_
-            * [.initRecord()](#VoiceMessage+initRecord) ⇒ <code>Promise.&lt;void&gt;</code>
-            * [.startRecord(silent)](#VoiceMessage+startRecord) ⇒ <code>Promise.&lt;void&gt;</code>
-            * [.finishRecord(silent)](#VoiceMessage+finishRecord) ⇒ <code>Promise.&lt;void&gt;</code>
+            * [.initRecord()](#VoiceMessage+initRecord) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
+            * [.startRecord(silent)](#VoiceMessage+startRecord) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
+            * [.finishRecord(silent)](#VoiceMessage+finishRecord) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
             * [.cancelRecord()](#VoiceMessage+cancelRecord)
             * [.isRecording()](#VoiceMessage+isRecording) ⇒ <code>boolean</code>
             * [.isError()](#VoiceMessage+isError)
@@ -48,7 +48,7 @@ VoiceMessage 语音消息类
         * [.registerRecorder(RecClass)](#VoiceMessage.registerRecorder)
         * _录音控制_
             * [.isEnvSupport()](#VoiceMessage.isEnvSupport) ⇒ <code>boolean</code>
-            * [.initRecorder()](#VoiceMessage.initRecorder) ⇒ <code>Promise.&lt;void&gt;</code>
+            * [.initRecorder()](#VoiceMessage.initRecorder) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
         * _自动播放列表_
             * [.addToAutoPlayQueue(msg)](#VoiceMessage.addToAutoPlayQueue)
             * [.getAutoPlayQueueLength()](#VoiceMessage.getAutoPlayQueueLength) ⇒ <code>number</code>
@@ -93,7 +93,7 @@ VoiceMessage 语音消息类
 **类型**: 实例方法(function)，来自 [<code>VoiceMessage</code>](#VoiceMessage)  
 <a name="VoiceMessage+initRecord"></a>
 
-### voice.initRecord() ⇒ <code>Promise.&lt;void&gt;</code>
+### voice.initRecord() ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
 初始化录音
 正常情况下可以直接调用 startRecord 开始录音，然后用户若尚未授权，系统会向用户询问授权
 若需要提前取得授权，可以调用此方法
@@ -102,7 +102,7 @@ VoiceMessage 语音消息类
 **分类**: 录音控制  
 <a name="VoiceMessage+startRecord"></a>
 
-### voice.startRecord(silent) ⇒ <code>Promise.&lt;void&gt;</code>
+### voice.startRecord(silent) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
 开始录音，若尚未初始化，会先自动初始化
 另外，视系统而定，两个 VoiceMessage 实例不一定可以同时录音。
 若另一 VoiceMessage 尚未结束录音，本实例调用 startRecord 可能会报错。
@@ -117,7 +117,7 @@ VoiceMessage 语音消息类
 
 <a name="VoiceMessage+finishRecord"></a>
 
-### voice.finishRecord(silent) ⇒ <code>Promise.&lt;void&gt;</code>
+### voice.finishRecord(silent) ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
 结束录音
 
 **类型**: 实例方法(function)，来自 [<code>VoiceMessage</code>](#VoiceMessage)  
@@ -351,7 +351,7 @@ VoiceMessage 语音消息类
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| RecClass | <code>Array.&lt;{new: Recorder}&gt;</code> | 数组，Recorder 类列表（直接传入，不要 new 和括号） |
+| RecClass | <code>[ &#x27;Array&#x27; ].&lt;{new: Recorder}&gt;</code> | 数组，Recorder 类列表（直接传入，不要 new 和括号） |
 
 <a name="VoiceMessage.isEnvSupport"></a>
 
@@ -362,7 +362,7 @@ VoiceMessage 语音消息类
 **分类**: 录音控制  
 <a name="VoiceMessage.initRecorder"></a>
 
-### VoiceMessage.initRecorder() ⇒ <code>Promise.&lt;void&gt;</code>
+### VoiceMessage.initRecorder() ⇒ <code>[ &#x27;Promise&#x27; ].&lt;void&gt;</code>
 提前初始化录音，用于像“按住说话”之类的场景，提前让用户授权
 
 **类型**: 静态方法(function)，来自 [<code>VoiceMessage</code>](#VoiceMessage)  

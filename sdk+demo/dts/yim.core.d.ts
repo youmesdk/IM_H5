@@ -168,11 +168,12 @@ declare class YIM extends WildEmitter {
      * 登录
      * @param {string} userId
      * @param {string} token
+     * @param {string} timestamp="",采用v3 token时需要同时传入token和timestamp，其他情况传""空字符串即可
      * @param {boolean} silent=false 若 true，则登录失败时不抛出错误（关闭 catch）
      * @returns {Promise<void>}
      * @category 用户帐户控制
      */
-    public login(userId: string, token: string, silent?: boolean): Promise<void>;
+    public login(userId: string, token: string, timestamp?:string, silent?: boolean): Promise<void>;
 
     /**
      * 退出登录，同时清空内存中的聊天记录，并退出所有房间
