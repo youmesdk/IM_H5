@@ -6,7 +6,7 @@
 
 - `wxSDK_demo` 是微信小游戏、小程序的sdk和demo
 
-- `sdk+demo` js sdk 和 demo目录，详情请参看里面的 [README.md](sdk+demo/README.md)
+- `sdk+demo` js sdk 和 demo目录，适合浏览器环境为底层的运行环境，详情请参看里面的 [README.md](sdk+demo/README.md)
 - `旧版兼容层` 使用旧版的API来给新版sdk包装一层兼容层，让老客户无缝升级，详情请参看里面的 [README.md](旧版兼容层/README.md)
 - `用户token生成` 服务器接口调用示例和文档
 
